@@ -33,12 +33,15 @@ class App
     {
         $controller = dirname($checkStr);
         $action = basename($checkStr);
-        $arr = explode('/',ucwords($controller,'/'));
-        $controller = implode("\\",$arr)."Controller";
+        $arr = explode('/', ucwords($controller, '/'));
+        $controller = implode("\\", $arr)."Controller";
         $arr[] = $action;
-        foreach ($arr as $value){
-            if (!preg_match('/^[A-Za-z]\w{0,20}$/',$value))
+        foreach ($arr as $value) {
+            // \var_dump($value);
+            // echo  "<br>";
+            if (!preg_match('/^[A-Za-z]\w{0,20}$/', $value)) {
                 exit("请求包含特殊字符！");
+            }
         }
         return ["controller"=>$controller,"action"=>$action];
     }

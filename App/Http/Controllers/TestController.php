@@ -8,7 +8,8 @@ class TestController
     {
         echo "<br>this is my first commit test!";
     }
-    public function fuck(){
+    public function fuck()
+    {
         echo "<br>Hello world!";
     }
 }
