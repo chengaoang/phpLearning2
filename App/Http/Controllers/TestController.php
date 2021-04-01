@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Parsedown;
+
 class TestController
 {
     public function index()
@@ -11,5 +13,11 @@ class TestController
     public function fuck()
     {
         echo "<br>Hello world!";
+    }
+    public function parsedown()
+    {
+        # ----------------codetest parsedown----------------
+        $Parsedown = new Parsedown();
+        echo $Parsedown->text('- Hello _Parsedown_!'); # prints: <p>Hello <em>Parsedown</em>!</p>
     }
 }
