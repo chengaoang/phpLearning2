@@ -1,5 +1,5 @@
-2021-04-01 07:19
-
+- 工程目录结构
+```powershell
 PS D:\STUDENT47\phpLearning2> tree /F /A
 |   .editorconfig [code的配置文件]
 |   composer.json [包管理器的配置文件]
@@ -30,3 +30,4 @@ PS D:\STUDENT47\phpLearning2> tree /F /A
     +---composer 的 autoload 包
     |
     \--- [其他拓展包]
+```

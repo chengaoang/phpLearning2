@@ -6,20 +6,11 @@
     'aliases' => 
     array (
     ),
-    'reference' => '63dac09ed85348641066bf49ec2d4ca7db5dd095',
-    'name' => '__root__',
+    'reference' => 'bde9e6f3a1e8c6f3acc7c50eb413f87ccee62537',
+    'name' => 'sven/php-learning-2',
   ),
   'versions' => 
   array (
-    '__root__' => 
-    array (
-      'pretty_version' => 'dev-main',
-      'version' => 'dev-main',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '63dac09ed85348641066bf49ec2d4ca7db5dd095',
-    ),
     'erusev/parsedown' => 
     array (
       'pretty_version' => '1.7.4',
@@ -28,6 +19,15 @@
       array (
       ),
       'reference' => 'cb17b6477dfff935958ba01325f2e8a2bfa6dab3',
+    ),
+    'sven/php-learning-2' => 
+    array (
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'bde9e6f3a1e8c6f3acc7c50eb413f87ccee62537',
     ),
   ),
 );

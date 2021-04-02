@@ -1,6 +1,22 @@
 {
+    "name": "sven/php-learning-2",
+    "description": "第二学期php课程练习.",
+    "keywords": ["zknu", "php-course"],
+    "homepage": "https://gitee.com/ChenGaoAng/phpLearning2",
+    "type": "bs-project",
+    "license": "WTFPL",
+    "authors": [
+        {
+            "name": "Sven",
+            "email": "1981907427@qq.com",
+            "homepage": "https://github.com/chengaoang",
+            "role": "Developer"
+        }
+    ],
     "autoload": {
         "psr-4": {
+            "myFrame\\": "myFrame",
+            "App\\": "App"
         }
     },
     "require": {
