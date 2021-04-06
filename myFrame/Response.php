@@ -20,17 +20,18 @@ class Response
     public function __construct($data, $header, $code)
     {
         $this->data=$data;
-        $this->header=\array_merge($this->$header, $header);
+        $this->header=\array_merge($this->header, $header);
         $this->code=$code;
     }
     public function send()
     {
         \http_response_code($this->code);
-        foreach ($header as $key => $value) {
-            \header($key.isset($value) ? '' : ':'.$value);
+        foreach ($this->header as $key => $value) {
+            header($key.(isset($value) ? ":$value" : ''));
         }
         echo $this->data;
     }
+    // static表示运行时最初调用的类
     public static function create($data = '', $header = [], $code = 200)
     {
         return new static($data, $header, $code);

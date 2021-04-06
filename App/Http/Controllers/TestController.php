@@ -22,6 +22,6 @@ class TestController
     }
     public function responseTest()
     {
-        return("{ 'name' : 'Sven' }");
+        return json_encode(['name'=>'Sven']);
     }
 }

@@ -33,12 +33,13 @@ class App
     public function run()
     {
         $classAndMethod = $this->routerCheck($this->pathInfo);
-        $this->dispatch($classAndMethod);
+        $this->dispatch($classAndMethod)->send();
     }
+
     /**
+     * @description 路由检测
      * @param $checkStr
      * @return array
-     * 对$pathInfo进行检测
      */
     public function routerCheck($checkStr)
     {
@@ -48,8 +49,6 @@ class App
         $controller = implode("\\", $arr)."Controller";
         $arr[] = $action;
         foreach ($arr as $value) {
-            // \var_dump($value);
-            // echo  "<br>";
             if (!preg_match('/^[A-Za-z]\w{0,20}$/', $value)) {
                 exit("请求包含特殊字符！");
             }
@@ -69,7 +68,7 @@ class App
         // 调用控制器方法
         $action = $pathInfo['action'];
         $data = $instance->$action();
-        return Response::create($data, ['Content-type'=>'text/json']);
+        return Response::create($data, ['Content-type' => 'application/json']);
     }
 
     /**
