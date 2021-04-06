@@ -1,4 +1,12 @@
 <?php
+/*
+ * @Author: your name
+ * @Date: 2021-04-01 10:06:20
+ * @LastEditTime: 2021-04-06 09:43:16
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \phpLearning2\myFrame\App.php
+ */
 namespace myFrame;
 
 /**
@@ -19,6 +27,9 @@ class App
     {
         $this->pathInfo = (new Request())->pathInfo();
     }
+    /**
+     * 调用dispatch，其返回一个Response对象
+     */
     public function run()
     {
         $classAndMethod = $this->routerCheck($this->pathInfo);
@@ -47,8 +58,9 @@ class App
     }
 
     /**
-     * @param array $pathInfo
-     * 请求分发
+     * @description: 请求分发
+     * @param {array} $pathInfo
+     * @return {*}
      */
     public function dispatch(array $pathInfo)
     {
@@ -56,7 +68,8 @@ class App
         $instance = $this->controller($pathInfo['controller']);
         // 调用控制器方法
         $action = $pathInfo['action'];
-        $instance->$action();
+        $data = $instance->$action();
+        return Response::create($data, ['Content-type'=>'text/json']);
     }
 
     /**

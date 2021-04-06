@@ -20,4 +20,8 @@ class TestController
         $Parsedown = new Parsedown();
         echo $Parsedown->text('- Hello _Parsedown_!'); # prints: <p>Hello <em>Parsedown</em>!</p>
     }
+    public function responseTest()
+    {
+        return("{ 'name' : 'Sven' }");
+    }
 }
