@@ -16,7 +16,7 @@ namespace myFrame;
  * 1-路由检测
  * 2-请求分发
  */
-class App
+class App extends Container
 {
     protected $pathInfo;
 
@@ -25,7 +25,9 @@ class App
      */
     public function __construct()
     {
-        $this->pathInfo = (new Request())->pathInfo();
+        // $this->pathInfo = (new Request())->pathInfo();
+        // $this->pathInfo = Container::getInstance()->make(Request::class)->pathInfo();
+        $this->pathInfo = $this->make(Request::class)->pathInfo();
     }
     /**
      * 调用dispatch，其返回一个Response对象
@@ -72,15 +74,16 @@ class App
     }
 
     /**
+     * @description: 实例化控制器对象
      * @param $controllerName
      * @return mixed
-     * 实例化控制器对象
      */
     public function controller($controllerName)
     {
         $controller = '\\App\\Http\\Controllers\\'.$controllerName;
         if (\class_exists($controller)) {
-            return new $controller;
+            // return new $controller;
+            return $this->make($controller);
         } else {
             exit("请求的控制器：".$controller."有误！");
         }
