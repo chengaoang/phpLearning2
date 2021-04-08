@@ -16,7 +16,7 @@ class Container
         return $instance[$className];
     }
     /**
-     * 采用单例模式返回当前类对象
+     * 采用单例模式返回一个后期静态绑定的当前类对象
      */
     protected static $instance;
     public static function getInstance()

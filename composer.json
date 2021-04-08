@@ -15,8 +15,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "myFrame\\": "myFrame",
-            "App\\": "App"
+            "myFrame\\": "myFrame/",
+            "App\\": "App/"
         }
     },
     "require": {

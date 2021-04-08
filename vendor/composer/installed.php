@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'bde9e6f3a1e8c6f3acc7c50eb413f87ccee62537',
+    'reference' => '46d9ecf7146fe95b8c4fa41559cae296d2c6067b',
     'name' => 'sven/php-learning-2',
   ),
   'versions' => 
@@ -27,7 +27,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'bde9e6f3a1e8c6f3acc7c50eb413f87ccee62537',
+      'reference' => '46d9ecf7146fe95b8c4fa41559cae296d2c6067b',
     ),
   ),
 );

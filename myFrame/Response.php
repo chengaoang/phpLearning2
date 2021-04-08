@@ -31,7 +31,7 @@ class Response
         }
         echo $this->data;
     }
-    // static表示运行时最初调用的类
+    // static表示运行时最初调用的类（后期静态绑定）
     public static function create($data = '', $header = [], $code = 200)
     {
         return new static($data, $header, $code);
