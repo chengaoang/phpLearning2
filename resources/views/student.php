@@ -15,7 +15,8 @@
       <th>性别</th>
       <th>操作</th>
     </tr>
-    <?php foreach ($data as $item) { ?>
+    <?php
+    foreach ($data as $item) { ?>
     <tr>
      <td><?php echo $item['id'] ?></td>
      <td><?=$item['name'] ?></td>

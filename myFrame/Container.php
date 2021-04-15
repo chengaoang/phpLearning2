@@ -25,7 +25,8 @@ class Container
         $args = [];
         $parameters = $reflectionMethod->getParameters();
         foreach ($parameters as $foo) {
-            $class = $foo->getClass();
+            // $class = $foo->getClass();
+            $class = $foo->getType();
             if ($class) {
                 $args[] = $this->make($class->getName());
             }

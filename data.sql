@@ -17,3 +17,5 @@ INSERT INTO `student` VALUES
 (2, 'James', '男', 'james@myframe.test', '12311114567'),
 (3, 'Rose', '女', 'rose@myframe.test', '12322224567'),
 (4, 'Mary', '女', 'mary@myframe.test', '12333334567');
+
+show databasses;

@@ -3,9 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="fba32541-9d50-46ee-b8c9-8c8bfd78d235" name="Default Changelist" comment="补充路由检测 routerCheck 函数">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/Http/Controllers/TestController.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Http/Controllers/TestController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myFrame/App.php" beforeDir="false" afterPath="$PROJECT_DIR$/myFrame/App.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myFrame/Response.php" beforeDir="false" afterPath="$PROJECT_DIR$/myFrame/Response.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/Http/Controllers/StudentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Http/Controllers/StudentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/StudentModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/StudentModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myFrame/Container.php" beforeDir="false" afterPath="$PROJECT_DIR$/myFrame/Container.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myFrame/Request.php" beforeDir="false" afterPath="$PROJECT_DIR$/myFrame/Request.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/public/.htaccess" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/student.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/student.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,10 +41,11 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -48,6 +54,11 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\My_php\phpLearning2\resources" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -60,6 +71,7 @@
       <workItem from="1617194733012" duration="6509000" />
       <workItem from="1617341130967" duration="6818000" />
       <workItem from="1617686040382" duration="3582000" />
+      <workItem from="1618459738531" duration="7226000" />
     </task>
     <task id="LOCAL-00001" summary="补充路由检测 routerCheck 函数">
       <created>1617202994230</created>

@@ -8,7 +8,7 @@ class StudentModel
     private $link;
     public function __construct()
     {
-        $this->link = new MySQLi('localhost', 'root', 'root', 'myframe');
+        $this->link = new MySQLi('localhost', 'root', 'password', 'myframe');
         $this->link->set_charset('utf8mb4');
     }
     public function getAll()

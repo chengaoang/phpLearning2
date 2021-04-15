@@ -36,4 +36,8 @@ class Request
     {
         return isset($_GET[$key]) ? $_GET[$key] : '';
     }
+
+    public function post($key){
+        return isset($_POST[$key]) ? $_POST[$key] : '';
+    }
 }
