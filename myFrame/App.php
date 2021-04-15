@@ -61,16 +61,24 @@ class App extends Container
     /**
      * @description: 请求分发
      * @param {array} $pathInfo
-     * @return {*}
+     * @return {Response}
      */
     public function dispatch(array $pathInfo)
     {
         // 调用controller方法实例化控制器对象
         $instance = $this->controller($pathInfo['controller']);
+        if (is_callable([$instance, $pathInfo['action']])) {
+            $reflect = new \ReflectionMethod($instance, $pathInfo['action']);
+        } else {
+            exit('操作不存在'. $pathInfo['action'] .'()');
+        }
         // 调用控制器方法
-        $action = $pathInfo['action'];
-        $data = $instance->$action();
-        return Response::create($data, ['Content-type' => 'application/json']);
+        // $action = $pathInfo['action'];
+        // $data = $instance->$action();
+        $args = $this->bindParamter($reflect); // 创建反射方法依赖的对象，放在args数组中
+        $data = $reflect->invokeArgs($instance, $args); // 调用action方法，传入args参数
+        // return Response::create($data, ['Content-type' => 'application/json']);
+        return Response::create($data);
     }
 
     /**

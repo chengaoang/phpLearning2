@@ -31,4 +31,9 @@ class Request
     {
         return isset($_SERVER[$name]) ? $_SERVER[$name] : null;
     }
+
+    public function get($key)
+    {
+        return isset($_GET[$key]) ? $_GET[$key] : '';
+    }
 }
