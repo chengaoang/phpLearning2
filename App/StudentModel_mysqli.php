@@ -3,9 +3,6 @@ namespace App;
 
 use MySQLi;
 
-/**
- * TODO：使用PDO
- */
 class StudentModel
 {
     private $link;
