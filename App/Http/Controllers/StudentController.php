@@ -1,14 +1,14 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\StudentModel;
+use App\Student;
 use myFrame\Request;
 
 class StudentController
 {
     protected $model;
     protected $request;
-    public function __construct(StudentModel $model, Request $request)
+    public function __construct(Student $model, Request $request)
     {
         $this->model = $model;
         $this->request = $request;
@@ -40,9 +40,9 @@ class StudentController
         $data['mobile'] = $this->request->post('mobile');
         $res = $this->model->update($id, $data);
         if ($res) {
-            echo '编辑成功,三秒跳回主页';
+            echo '更新成功,三秒跳回主页';
         } else {
-            echo '编辑失败,三秒跳回主页';
+            echo '更新失败,三秒跳回主页';
         }
         echo "<meta http-equiv=\"refresh\" content=\"3;URL=/student/index\">";
     }

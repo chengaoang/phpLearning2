@@ -7,7 +7,7 @@ use PDO;
 PDO
     - query
     - exec
-PDOstatement [statement:声明]
+返回的结果集：PDOstatement [statement:声明]
     - fetch
     - fetchColumn
     - fetchAll
