@@ -13,7 +13,7 @@ PDOstatement [statement:声明]
     - fetchAll
     - fetchObject （不常用）
     * fetch(PDO::FETCH_BOUND) + bindColumn
-prepare [准备] (？占位符绑定参数时实用位序)
+预编译sql语句：prepare [准备] (？占位符绑定参数时使用位序)
     - PDO::prepare ( string $statement , array $driver_options = array() ) : PDOStatement
     - PDOStatement::execute ( array $input_parameters = ? ) : bool
     - bindParam
