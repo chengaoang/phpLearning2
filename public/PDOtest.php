@@ -21,6 +21,7 @@ PDO
 */
 echo "<pre>";
 
+die;
 $pdo = new PDO(
     "mysql:host=localhost;port=3306;dbname=myframe;charset=utf8",
     "root",
@@ -30,11 +31,11 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $sql = "select * from student";
 $resultSet = $pdo->query($sql);
 // 用fetch获取PDOstatementObject里的全部行。
-while ($data = $statementObj->fetch(PDO::FETCH_ASSOC)) {
+while ($data = $resultSet->fetch(PDO::FETCH_ASSOC)) {
     \var_dump($data);
 }
 // or 把resultSet当数组用
-foreach ($statementObj as $key => $value) {
+foreach ($resultSet as $key => $value) {
     echo '-------第'.($key+1).'名选手--------<br>';
     echo ">".$value['id'].'<br>';
     echo ">".$value['name'].'<br>';

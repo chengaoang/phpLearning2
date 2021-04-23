@@ -12,9 +12,9 @@ class Student
         $this->pdo = new PDO(
             "mysql:host=localhost;port=3306;dbname=myframe;charset=utf8",
             "root",
-            "root"
+            "password"
         );
-        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     public function getAll()
     {
@@ -40,19 +40,16 @@ class Student
         $gender = $data['gender'];
         $email = $data['email'];
         $mobile = $data['mobile'];
-        $sql = "update `student` set `name` = ':name', `gender` = ':gender', `email` = ':email', `mobile` = ':mobile' where `id` = :id";
+        $sql = "update `student` set `name` = :name, `gender` = :gender, `email` = :email, `mobile` = :mobile where `id` = :id";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam('name', "$name");
+        $stmt->bindParam(':name', $name);
         $stmt->bindParam(':gender', $gender);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':mobile', $mobile);
         $stmt->bindParam(':id', $id);
-        \var_dump($stmt);
         $stmt->execute();
         if ($stmt === false) {
-            echo $sql;
-            echo '</br>';
-            exit;
+            // Do something
         }
         return $stmt;
     }

@@ -9,6 +9,9 @@
  */
 namespace myFrame;
 
+use Exception;
+use ReflectionException;
+
 /**
  * Class App
  * @package myframe
@@ -19,7 +22,7 @@ namespace myFrame;
 class App extends Container
 {
     protected $pathInfo;
-
+    protected $debug = false;
     /**
      * App constructor.
      */
@@ -32,16 +35,22 @@ class App extends Container
     /**
      * 调用dispatch，其返回一个Response对象
      */
-    public function run()
+    public function run(): Response
     {
-        $classAndMethod = $this->routerCheck($this->pathInfo);
-        $this->dispatch($classAndMethod)->send();
+        try {
+            $classAndMethod = $this->routerCheck($this->pathInfo);
+            return $this->dispatch($classAndMethod);
+        }catch (Exception $e){
+            $msg = $this->debug ? $e->getMessage() : '';
+            return Response::create('系统发生错误 <br> '.$msg, [] ,403);
+        }
     }
 
     /**
      * @description 路由检测
      * @param $checkStr
      * @return array
+     * @throws Exception
      */
     public function routerCheck($checkStr)
     {
@@ -52,7 +61,7 @@ class App extends Container
         $arr[] = $action;
         foreach ($arr as $value) {
             if (!preg_match('/^[A-Za-z]\w{0,20}$/', $value)) {
-                exit("请求包含特殊字符！");
+                throw new Exception("请求包含特殊字符！");
             }
         }
         return ["controller"=>$controller,"action"=>$action];
@@ -60,17 +69,19 @@ class App extends Container
 
     /**
      * @description: 请求分发
-     * @param {array} $pathInfo
-     * @return {Response}
+     * @param array $pathInfo
+     * @return Response {Response}
+     * @throws ReflectionException
+     * @throws Exception
      */
-    public function dispatch(array $pathInfo)
+    public function dispatch(array $pathInfo): Response
     {
         // 调用controller方法实例化控制器对象
         $instance = $this->controller($pathInfo['controller']);
         if (is_callable([$instance, $pathInfo['action']])) {
             $reflect = new \ReflectionMethod($instance, $pathInfo['action']);
         } else {
-            exit('操作不存在'. $pathInfo['action'] .'()');
+            throw new Exception('操作不存在->'. $pathInfo['action'] .'()');
         }
         // 调用控制器方法
         // $action = $pathInfo['action'];
@@ -85,6 +96,7 @@ class App extends Container
      * @description: 实例化控制器对象
      * @param $controllerName
      * @return mixed
+     * @throws Exception
      */
     public function controller($controllerName)
     {
@@ -93,7 +105,7 @@ class App extends Container
             // return new $controller;
             return $this->make($controller);
         } else {
-            exit("请求的控制器：".$controller."有误！");
+            throw new Exception("请求的控制器：".$controller."有误！");
         }
     }
 }

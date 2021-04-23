@@ -6,4 +6,4 @@ use myFrame\App;
 require "../vendor/autoload.php";
 
 // (new App())->run();
-App::getInstance()->run();
+App::getInstance()->run()->send();

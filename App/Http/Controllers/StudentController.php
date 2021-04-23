@@ -23,7 +23,7 @@ class StudentController
     {
         $id = $this->request->get('id');
         if (!$id) {
-            exit('参数传递有误');
+            throw new \Exception(__CLASS__.'的'.__FUNCTION__.'参数传递有误');
         }
         $data = $this->model->getOne($id);
         require "../resources/views/studentEdit.php";
@@ -32,7 +32,7 @@ class StudentController
     {
         $id = $this->request->post('id');
         if (!$id) {
-            exit('参数传递有误');
+            throw new \Exception(__FUNCTION__.'的'.__FUNCTION__.'参数传递有误');
         }
         $data['name'] = $this->request->post('name');
         $data['gender'] = $this->request->post('gender');
