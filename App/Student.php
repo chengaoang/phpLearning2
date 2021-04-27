@@ -3,54 +3,35 @@ namespace App;
 
 use MySQLi;
 use PDO;
+use myFrame\DB;
 
 class Student
 {
     private $pdo;
-    public function __construct()
+    public function __construct(DB $db)
     {
-        $this->pdo = new PDO(
-            "mysql:host=localhost;port=3306;dbname=myframe;charset=utf8",
-            "root",
-            "password"
-        );
-        // $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->pdo = $db;
     }
     public function getAll()
     {
         $sql = 'select * from `student`';
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute();
-        // return $res->fetch_all(MYSQLI_ASSOC);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $this->pdo->fetchAll($sql);
     }
     public function getOne($id)
     {
         $sql = "select * from `student` where `id` = :id";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
-        // $data = $res->fetch_assoc();
-        // return $data;
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $this->pdo->fetch($sql, ['id'=>$id]);
     }
-    public function update($id, $data)
+    public function update($data)
     {
-        $name = $data['name'];
-        $gender = $data['gender'];
-        $email = $data['email'];
-        $mobile = $data['mobile'];
-        $sql = "update `student` set `name` = :name, `gender` = :gender, `email` = :email, `mobile` = :mobile where `id` = :id";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':name', $name);
-        $stmt->bindParam(':gender', $gender);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':mobile', $mobile);
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
-        if ($stmt === false) {
-            // Do something
+        $args = ['name','gender','email','mobile','id'];
+        $args2 = [];
+        foreach ($args as $foo) {
+            $args2[$foo] = $data[$foo] ? $data[$foo] : '';
         }
-        return $stmt;
+        $sql = "update `student` set 
+               `name` = :name, `gender` = :gender, `email` = :email, `mobile` = :mobile where `id` = :id";
+        $rowCount = $this->pdo->execute($sql, $args2);
+        return $rowCount;
     }
 }

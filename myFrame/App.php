@@ -22,12 +22,14 @@ use ReflectionException;
 class App extends Container
 {
     protected $pathInfo;
-    protected $debug = false;
+    protected $debug = true;
     /**
      * App constructor.
      */
     public function __construct()
     {
+        // TODO: 获取配置文件路径，调用DB的init初始化DB
+
         // $this->pathInfo = (new Request())->pathInfo();
         // $this->pathInfo = Container::getInstance()->make(Request::class)->pathInfo();
         $this->pathInfo = $this->make(Request::class)->pathInfo();
@@ -40,9 +42,9 @@ class App extends Container
         try {
             $classAndMethod = $this->routerCheck($this->pathInfo);
             return $this->dispatch($classAndMethod);
-        }catch (Exception $e){
+        } catch (Exception $e) {
             $msg = $this->debug ? $e->getMessage() : '';
-            return Response::create('系统发生错误 <br> '.$msg, [] ,403);
+            return Response::create('系统发生错误 <br> '.$msg, [], 403);
         }
     }
 

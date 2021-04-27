@@ -32,3 +32,7 @@ PS D:\STUDENT47\phpLearning2> tree /F /A
     \--- [其他拓展包]
 ```
 
+## 为DB类的各个方法添加注释，并且使用DB类操作数据库完成展示学生列表、编辑学生信息的功能。
+- DB.php
+1. 封装fetch，fetchAll，execute 方法
+2. 使用config/db.php 初始化DB.php

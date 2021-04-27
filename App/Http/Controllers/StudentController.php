@@ -38,8 +38,9 @@ class StudentController
         $data['gender'] = $this->request->post('gender');
         $data['email'] = $this->request->post('email');
         $data['mobile'] = $this->request->post('mobile');
-        $res = $this->model->update($id, $data);
-        if ($res) {
+        $data['id'] = $id;
+        $res = $this->model->update($data);
+        if ($res !== true) {
             echo '更新成功,三秒跳回主页';
         } else {
             echo '更新失败,三秒跳回主页';
