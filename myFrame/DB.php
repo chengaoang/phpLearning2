@@ -1,12 +1,14 @@
 <?php
 namespace myFrame;
 
+use Exception;
 use PDO;
+use PDOException;
 
 class DB
 {
-    protected static $pdoLink;
-    protected static $initConfig = []; // 供App类的构造方法调用静态init方法初始化DB+配置文件用
+    protected static $instance; // 保存单例模式的DB类实例
+    protected static $initConfig = []; // 供App类的构造方法调用静态init方法初始化config/database.php配置文件用
     protected $config = [
         'type' => 'mysql',
         'host' => 'localhost',
@@ -15,24 +17,44 @@ class DB
         'charset' => 'utf8',
         'user' => 'root',
         'pwd' => ''
-    ];
+    ]; // 缺省配置文件
+    private $pdoLink; // PDO 连接
+
+    /**
+     * @description DB constructor.
+     * @param array $config
+     */
     public function __construct(array $config = [])
     {
-        \array_merge($this->config, $config); // TODO：有返回值，面向过程？
+        $this->config = array_merge($this->config, $config);
         $this->initDB();
     }
-    public static function getInstance()
+
+    /**
+     * @description 返回DB实例（单例模式）
+     * @return DB
+     */
+    public static function getInstance(): DB
     {
-        if (!self::$pdoLink) {
-            self::$pdoLink = new static(static::$initConfig);
+        if (!self::$instance) {
+            self::$instance = new static(static::$initConfig);
         }
-        return self::$pdoLink;
+        return self::$instance;
     }
+
+    /**
+     * @description 传入连接配置
+     * @param array $config
+     */
     public static function init(array $config = [])
     {
         self::$initConfig = $config;
     }
 
+    /**
+     * @description 初始化PDO连接
+     * @throws Exception
+     */
     public function initDB()
     {
         $type = $this->config['type'];
@@ -42,29 +64,70 @@ class DB
         $charset = $this->config['charset'];
         $user = $this->config['user'];
         $pwd = $this->config['pwd'];
-        $this->pdoLink = new PDO(
-            "$type:host=$host;port=$port;dbname=$dbname;charset=$charset",
-            "$user",
-            "$pwd"
-        );
-        $this->pdoLink->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        try {
+            $this->pdoLink = new PDO(
+                "$type:host=$host;port=$port;dbname=$dbname;charset=$charset",
+                "$user",
+                "$pwd"
+            );
+        }catch (Exception $ex){
+            throw new Exception("初始化PDO异常:".$ex->getMessage());
+        }
+
+        // $this->pdoLink->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
-    public function fetch($sql, array $args = [])
+
+    /**
+     * @description 获取单条数据
+     * @param $sql
+     * @param array $args
+     * @return array
+     * @throws Exception
+     */
+    public function fetch($sql, array $args = []): array
     {
-        $stmt = $this->pdoLink->prepare($sql);
-        $stmt->execute($args);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        try {
+            $stmt = $this->pdoLink->prepare($sql);
+            $stmt->execute($args);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }catch (PDOException $ex){
+            throw new Exception(__CLASS__." 的 ".__FUNCTION__." 方法执行异常 : ".$ex->getMessage());
+        }
     }
-    public function fetchAll($sql, array $args = [])
+
+    /**
+     * @description 获取多条数据
+     * @param $sql
+     * @param array $args
+     * @return array
+     * @throws Exception
+     */
+    public function fetchAll($sql, array $args = []): array
     {
-        $stmt = $this->pdoLink->prepare($sql);
-        $stmt->execute($args);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        try {
+            $stmt = $this->pdoLink->prepare($sql);
+            $stmt->execute($args);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }catch (PDOException $ex){
+            throw new Exception(__CLASS__." 的 ".__FUNCTION__." 方法执行异常 : ".$ex->getMessage());
+        }
     }
-    public function execute($sql, array $args = [])
+
+    /**
+     * @description 执行sql，返回受影响行数
+     * @param $sql
+     * @param array $args
+     * @return int
+     * @throws Exception
+     */
+    public function execute($sql, array $args = []): int
     {
-        $stmt = $this->pdoLink->prepare($sql);
-        $stmt->execute($args);
-        return $stmt->rowCount();
+        try {
+            $stmt = $this->pdoLink->prepare($sql);
+            $stmt->execute($args);
+            return $stmt->rowCount();
+        }catch (PDOException $ex){
+            throw new Exception(__CLASS__." 的 ".__FUNCTION__." 方法执行异常 : ".$ex->getMessage());
+        }
     }
 }

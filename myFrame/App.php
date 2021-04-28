@@ -23,13 +23,12 @@ class App extends Container
 {
     protected $pathInfo;
     protected $debug = true;
-    /**
-     * App constructor.
-     */
+    protected $rootPath; // 保存项目的跟路径
     public function __construct()
     {
-        // TODO: 获取配置文件路径，调用DB的init初始化DB
-
+        // 获取配置文件路径，调用DB的init初始化DB
+        $this->rootPath = dirname(__DIR__).'/';
+        DB::init(require $this->rootPath.'config/database.php');
         // $this->pathInfo = (new Request())->pathInfo();
         // $this->pathInfo = Container::getInstance()->make(Request::class)->pathInfo();
         $this->pathInfo = $this->make(Request::class)->pathInfo();

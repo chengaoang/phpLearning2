@@ -1,16 +1,14 @@
 <?php
 namespace App;
 
-use MySQLi;
-use PDO;
 use myFrame\DB;
 
 class Student
 {
     private $pdo;
-    public function __construct(DB $db)
+    public function __construct()
     {
-        $this->pdo = $db;
+        $this->pdo = DB::getInstance();
     }
     public function getAll()
     {
