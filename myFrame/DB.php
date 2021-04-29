@@ -36,8 +36,9 @@ class DB
      */
     public static function getInstance(): DB
     {
+        // self引用的是当前类(current class)而static允许函数调用在运行时绑定调用类(calling class)
         if (!self::$instance) {
-            self::$instance = new static(static::$initConfig);
+            self::$instance = new static(static::$initConfig); // 后期静态绑定
         }
         return self::$instance;
     }
