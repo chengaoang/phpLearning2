@@ -1,3 +1,7 @@
+[看板](https://gitee.com/ChenGaoAng/phpLearning2/board)
+
+[Smarty官方中文文档](https://www.smarty.net/docs/zh_CN/)
+
 - 工程目录结构
 ```powershell
 PS D:\STUDENT47\phpLearning2> tree /F /A
