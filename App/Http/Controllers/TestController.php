@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Parsedown;
 use myFrame\Request;
+use App\student;
 
 class TestController
 {
@@ -38,5 +39,18 @@ class TestController
     public function reflectionMethod(Request $req2)
     {
         return json_encode(["Reflection method!"=>$req2->get('id')]);
+    }
+    public function test(){
+        return strtolower(basename(get_class($this)));
+    }
+    public function testgettable(){
+        return (new student())->getTable();
+    }
+    public function modelGet(){
+        // $data = (new student())->get(['id','name']);
+        // $data = (new student())->first(['id','name']);
+        $data = (new student())->value('name');
+        echo "<pre>";
+        return print_r($data);
     }
 }
