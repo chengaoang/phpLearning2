@@ -6,5 +6,5 @@ return [
     'dbname' => 'myframe',
     'charset' => 'utf8',
     'user' => 'root',
-    'pwd' => 'password'
+    'pwd' => 'root'
 ];

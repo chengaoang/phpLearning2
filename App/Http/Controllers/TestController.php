@@ -40,16 +40,35 @@ class TestController
     {
         return json_encode(["Reflection method!"=>$req2->get('id')]);
     }
-    public function test(){
+    public function test()
+    {
         return strtolower(basename(get_class($this)));
     }
-    public function testgettable(){
+    public function testgettable()
+    {
         return (new student())->getTable();
     }
-    public function modelGet(){
+    public function modelGet()
+    {
         // $data = (new student())->get(['id','name']);
         // $data = (new student())->first(['id','name']);
         $data = (new student())->value('name');
+        echo "<pre>";
+        return print_r($data);
+    }
+    public function modelWhere()
+    {
+        // $data = (new student())->first(['id','name']);
+        // $data = (new student())->where('id', '>', 2)->orWhere('id', '=', 1)->get();
+        $data = (new student())->where(['id'=> 1])->get();
+        echo "<pre>";
+        return print_r($data);
+    }
+    public function modelOrderByAndLimit()
+    {
+        // $data = (new student())->orderBy('id', 'DESC ')->limit(1, 2)->get();
+        $data = (new student())->limit(1, 2)->orderBy('id', 'DESC ')->get();
+        // TODO：咋先分页再排序/对limit的数据按id排序
         echo "<pre>";
         return print_r($data);
     }
