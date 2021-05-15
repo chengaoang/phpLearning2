@@ -2,22 +2,33 @@
 namespace App\Http\Controllers;
 
 use App\student;
+use myFrame\App;
 use myFrame\Request;
+use myFrame\Controller;
+use Smarty;
 
-class StudentController
+class StudentController extends Controller
 {
     protected $model;
     protected $request;
-    public function __construct(student $model, Request $request)
+    public function __construct(student $model, Request $request,App $app,Smarty $smarty)
     {
         $this->model = $model;
         $this->request = $request;
+        parent::__construct($app,$request,$smarty); // 无法调用父类构造方法的暂时解决方案
     }
 
     public function index()
     {
+        /*  OLD VERSION
+            $data = $this->model->get(['id','name','gender']);
+            require "../resources/views/student.php"; // 此路径是相对与app的路径，因为dispatch在app里写的。
+         */
+
+        // SMARTY VERSION
         $data = $this->model->get(['id','name','gender']);
-        require "../resources/views/student.php"; // 此路径是相对与app的路径，因为dispatch在app里写的。
+        $this->assign('student', $data);
+        return $this->fetch('student');
     }
     public function update()
     {
@@ -27,7 +38,9 @@ class StudentController
         }
         // $data = $this->model->getOne($id);
         $data = $this->model->where('id',$id)->first();
-        require "../resources/views/studentEdit.php";
+        // require "../resources/views/studentEdit.php";
+        $this->assign('student', $data);
+        return $this->fetch('studentEdit');
     }
     public function save()
     {

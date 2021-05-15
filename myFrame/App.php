@@ -26,6 +26,8 @@ class App extends Container
     protected $rootPath; // 保存项目的跟路径
     public function __construct()
     {
+        // echo "<pre>";
+
         // 获取配置文件路径，调用DB的init初始化DB
         $this->rootPath = dirname(__DIR__).'/';
         DB::init(require $this->rootPath.'config/database.php');
@@ -108,5 +110,14 @@ class App extends Container
         } else {
             throw new Exception("请求的控制器：".$controller."有误！");
         }
+    }
+
+    /**
+     * 获取项目的根路径
+     * @return string
+     */
+    public function getRootPath(): string
+    {
+        return $this->rootPath;
     }
 }
