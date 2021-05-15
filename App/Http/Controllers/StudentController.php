@@ -10,11 +10,9 @@ use Smarty;
 class StudentController extends Controller
 {
     protected $model;
-    protected $request;
-    public function __construct(student $model, Request $request,App $app,Smarty $smarty)
+    public function __construct(student $model,App $app,Request $request,Smarty $smarty)
     {
         $this->model = $model;
-        $this->request = $request;
         parent::__construct($app,$request,$smarty); // 无法调用父类构造方法的暂时解决方案
     }
 

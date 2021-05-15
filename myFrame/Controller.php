@@ -2,8 +2,6 @@
 namespace myFrame;
 
 use Smarty;
-use myFrame\App;
-use myFrame\Request;
 
 class Controller{
     protected $app;
@@ -16,8 +14,8 @@ class Controller{
         $this->smarty = $smarty;
         $templateDir = $this->app->getRootPath().'resources/views/';
         $compileDir = $this->app->getRootPath().'storage/framework/views/';
-        $this->smarty->template_dir=$templateDir;
-        $this->smarty->compile_dir=$compileDir;
+        $this->smarty->setTemplateDir($templateDir);
+        $this->smarty->setCompileDir($compileDir);
     }
 
     // 封装 assign 为模板中的变量赋值

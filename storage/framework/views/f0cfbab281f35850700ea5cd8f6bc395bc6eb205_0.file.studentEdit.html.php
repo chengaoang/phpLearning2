@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-05-15 14:02:56
+/* Smarty version 3.1.39, created on 2021-05-15 15:05:16
   from 'C:\My_php\phpLearning2\resources\views\studentEdit.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_609f6410d3dd17_14800309',
+  'unifunc' => 'content_609f72ac8aa2a9_36221013',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_609f6410d3dd17_14800309 (Smarty_Internal_Template $_smarty_tpl) {
+function content_609f72ac8aa2a9_36221013 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>

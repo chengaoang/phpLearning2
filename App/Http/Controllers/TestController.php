@@ -50,9 +50,9 @@ class TestController
     }
     public function modelGet()
     {
-        $data = (new student())->get();
+        // $data = (new student())->get();
         // $data = (new student())->first(['id','name']);
-        // $data = (new student())->value('name');
+        $data = (new student())->value('name');
         echo "<pre>";
         return print_r($data);
     }
