@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '46d9ecf7146fe95b8c4fa41559cae296d2c6067b',
+    'reference' => '54276c2516d8056dcd5fc194f9deec02fe4c27f7',
     'name' => 'sven/php-learning-2',
   ),
   'versions' => 
@@ -44,6 +44,15 @@ private static $installed = array (
       ),
       'reference' => 'cb17b6477dfff935958ba01325f2e8a2bfa6dab3',
     ),
+    'smarty/smarty' => 
+    array (
+      'pretty_version' => 'v3.1.39',
+      'version' => '3.1.39.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'e27da524f7bcd7361e3ea5cdfa99c4378a7b5419',
+    ),
     'sven/php-learning-2' => 
     array (
       'pretty_version' => 'dev-main',
@@ -51,7 +60,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '46d9ecf7146fe95b8c4fa41559cae296d2c6067b',
+      'reference' => '54276c2516d8056dcd5fc194f9deec02fe4c27f7',
     ),
   ),
 );

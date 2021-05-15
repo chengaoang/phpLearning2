@@ -50,9 +50,9 @@ class TestController
     }
     public function modelGet()
     {
-        // $data = (new student())->get(['id','name']);
+        $data = (new student())->get();
         // $data = (new student())->first(['id','name']);
-        $data = (new student())->value('name');
+        // $data = (new student())->value('name');
         echo "<pre>";
         return print_r($data);
     }
@@ -71,5 +71,22 @@ class TestController
         // TODO：咋先分页再排序/对limit的数据按id排序
         echo "<pre>";
         return print_r($data);
+    }
+    public function test1(){
+        echo "<pre>";
+        $a = 2;
+        if (true)
+            $a = 1;
+        echo $a;
+    }
+
+    public function test2(){
+        return (new student())->insert(['name'=>'Svne']);
+    }
+    public function testUpdate(){
+        return (new student())->where('id',5)->update(['name'=>'foobar']);
+    }
+    public function testDelete(){
+        return (new student())->where('id',5)->delete();
     }
 }

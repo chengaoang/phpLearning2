@@ -2,7 +2,7 @@
 namespace App;
 use myFrame\Model;
 class student extends Model{
-    public function getTable(){
-        return $this->table;
-    }
+    // public function getTable(){
+    //     return $this->table;
+    // }
 }

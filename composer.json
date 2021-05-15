@@ -20,6 +20,7 @@
         }
     },
     "require": {
-        "erusev/parsedown": "^1.7"
+        "erusev/parsedown": "^1.7",
+        "smarty/smarty": "^3.1"
     }
 }
