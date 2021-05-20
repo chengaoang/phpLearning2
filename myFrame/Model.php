@@ -18,7 +18,7 @@ class Model
     protected function initTable()
     {
         if ($this->table === "") {
-            $this->table = strtolower(basename(get_class($this)));
+            $this->table = $this->db->getConfig('prefix').strtolower(basename(get_class($this)));
         }
     }
 

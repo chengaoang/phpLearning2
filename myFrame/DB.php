@@ -16,7 +16,8 @@ class DB
         'dbname' => '',
         'charset' => 'utf8',
         'user' => 'root',
-        'pwd' => ''
+        'pwd' => '',
+        'prefix' => ''
     ]; // 缺省配置文件
     private $pdoLink; // PDO 连接
 
@@ -58,13 +59,13 @@ class DB
      */
     public function initDB()
     {
-        $type = $this->config['type'];
-        $host = $this->config['host'];
-        $port = $this->config['port'];
-        $dbname = $this->config['dbname'];
-        $charset = $this->config['charset'];
-        $user = $this->config['user'];
-        $pwd = $this->config['pwd'];
+        $type = $this->getConfig('type');
+        $host = $this->getConfig('host');
+        $port = $this->getConfig('port');
+        $dbname = $this->getConfig('dbname');
+        $charset = $this->getConfig('charset');
+        $user = $this->getConfig('user');
+        $pwd = $this->getConfig('pwd');
         try {
             $this->pdoLink = new PDO(
                 "$type:host=$host;port=$port;dbname=$dbname;charset=$charset",
@@ -130,5 +131,10 @@ class DB
         }catch (PDOException $ex){
             throw new Exception(__CLASS__." 的 ".__FUNCTION__." 方法执行异常 : ".$ex->getMessage());
         }
+    }
+
+    public function getConfig($key = null)
+    {
+        return $key ? $this->config[$key] : $this->config;
     }
 }

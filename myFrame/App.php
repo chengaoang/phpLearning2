@@ -43,6 +43,8 @@ class App extends Container
         try {
             $classAndMethod = $this->routerCheck($this->pathInfo);
             return $this->dispatch($classAndMethod);
+        } catch (HttpException $e) {
+            return $e->getResponse();
         } catch (Exception $e) {
             $msg = $this->debug ? $e->getMessage() : '';
             return Response::create('系统发生错误 <br> '.$msg, [], 403);

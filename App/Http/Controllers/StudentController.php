@@ -10,10 +10,10 @@ use Smarty;
 class StudentController extends Controller
 {
     protected $model;
-    public function __construct(student $model,App $app,Request $request,Smarty $smarty)
+    public function __construct(student $model, App $app, Request $request, Smarty $smarty)
     {
         $this->model = $model;
-        parent::__construct($app,$request,$smarty); // 无法调用父类构造方法的暂时解决方案
+        parent::__construct($app, $request, $smarty); // 无法调用父类构造方法的暂时解决方案
     }
 
     public function index()
@@ -35,7 +35,7 @@ class StudentController extends Controller
             throw new \Exception(__CLASS__.'的'.__FUNCTION__.'参数传递有误');
         }
         // $data = $this->model->getOne($id);
-        $data = $this->model->where('id',$id)->first();
+        $data = $this->model->where('id', $id)->first();
         // require "../resources/views/studentEdit.php";
         $this->assign('student', $data);
         return $this->fetch('studentEdit');
@@ -52,7 +52,7 @@ class StudentController extends Controller
         $data['mobile'] = $this->request->post('mobile');
         $data['id'] = $id;
         // $res = $this->model->update($data);
-        $res = $this->model->where('id',$id)->update($data);
+        $res = $this->model->where('id', $id)->update($data);
         if ($res !== true) {
             echo '更新成功,三秒跳回主页';
         } else {
