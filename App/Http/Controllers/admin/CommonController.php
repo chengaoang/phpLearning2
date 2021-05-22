@@ -9,12 +9,24 @@ use myFrame\Controller;
  *
  * 由于子类如果定义了构造方法，其实例化时不会执行父类的构造，虽然可以使用parent::__construct()，但很麻烦。
  * 故诞生了controller类的空initalize()方法，并在controller类的构造中调用，
- * initalize由子类具体实现，在控制器初始化的时候执行。
+ * initalize由子类具体实现(重写)，在控制器初始化的时候执行。
  */
 class CommonController extends Controller
 {
-    public function initalize()
+    protected $checkLoginExclude = [];
+    /**
+     * 判断登录状态
+     */
+    public function initialize()
     {
-        // TODO：判断登录状态
+        session_start();
+        if (!isset($_SESSION['cms']))
+            $_SESSION = ['cms' => []];
+
+        if (in_array($this->request->getAction(), $this->checkLoginExclude)) return;
+
+        if (empty($_SESSION['cms']['admin']))
+            $this->redirect('/admin/login/index');
+
     }
 }

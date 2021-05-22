@@ -17,8 +17,12 @@ class Controller
         $compileDir = $this->app->getRootPath().'storage/framework/views/';
         $this->smarty->setTemplateDir($templateDir);
         $this->smarty->setCompileDir($compileDir);
+        $this->initialize();
+    }
 
-        $this->initalize();
+    protected function initialize()
+    {
+
     }
 
     // 封装 assign 为模板中的变量赋值
@@ -35,14 +39,20 @@ class Controller
     // 抛出HttpException，用于response一个JSON格式的提示信息
     public function success($msg = '')
     {
-        // TODO
+        $data = json_encode(['code'=>1,'msg'=>$msg]);
+        $header = ['Content-Type'=>'application/json'];
+        throw new HttpException(Response::create($data,$header,200));
     }
     public function error($msg = '')
     {
-        // TODO
+        $data = json_encode(['code'=>0,'msg'=>$msg]);
+        $header = ['Content-Type'=>'application/json'];
+        throw new HttpException(Response::create($data,$header,200));
     }
 
-    protected function initalize()
-    {
+    public function redirect(string $url = '',string $code = '302'){
+        $header = ['Location'=>$url];
+        throw new HttpException(Response::create('',$header,$code));
     }
+
 }

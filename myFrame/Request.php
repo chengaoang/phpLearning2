@@ -6,6 +6,17 @@ class Request
 {
     protected $pathInfo;
 
+    // 为了在CommonController中判断当前访问的方法是否需要检查登录，需要在请求分发的时候，将方法名记录下来。
+    protected string $action;
+    public function getAction(): string
+    {
+        return $this->action ?: '';
+    }
+    public function setAction($action): void
+    {
+        $this->action = $action;
+    }
+
     /**
      * @return string
      * 返回一个对路径信息进行过滤后的字符串

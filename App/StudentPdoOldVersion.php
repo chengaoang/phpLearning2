@@ -4,7 +4,7 @@ namespace App;
 use MySQLi;
 use PDO;
 
-class Student
+class _Student
 {
     private $pdo;
     public function __construct()

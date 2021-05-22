@@ -76,17 +76,17 @@ class DB
             throw new Exception("初始化PDO异常:".$ex->getMessage());
         }
 
-        // $this->pdoLink->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->pdoLink->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
     /**
      * @description 获取单条数据
      * @param $sql
      * @param array $args
-     * @return array
+     * @return array|bool
      * @throws Exception
      */
-    public function fetch($sql, array $args = []): array
+    public function fetch($sql, array $args = []): array|bool
     {
         try {
             $stmt = $this->pdoLink->prepare($sql);
