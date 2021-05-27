@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Examples of <code>ondragstart</code></h1>
+ <div>
+    <p id="source" draggable="true">
+      Select this element, drag it.</p>
+ </div>
+</body>
+<script>
+    let a = document.getElementById('source');
+    a.ondragstart = function(){
+        console.log('sdf');
+    };
+</script>
+</html>
