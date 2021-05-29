@@ -12,7 +12,7 @@ use myFrame\HttpException;
 class LoginController extends CommonController
 {
     // 保存不需要验证用户登录状态的方法
-    protected $checkLoginExclude = ['index','login','captcha','logout'];
+    protected $checkLoginExclude = ['index','login','captcha','loginOut'];
 
     /**
      * 显示登陆页面

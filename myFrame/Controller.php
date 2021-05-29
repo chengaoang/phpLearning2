@@ -55,4 +55,9 @@ class Controller
         throw new HttpException(Response::create('',$header,$code));
     }
 
+    protected function display($template = ''){
+        $data = $this->fetch($template);
+        throw new HttpException(Response::create($data));
+    }
+
 }

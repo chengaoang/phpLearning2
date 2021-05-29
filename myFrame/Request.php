@@ -51,4 +51,8 @@ class Request
     public function post($key){
         return isset($_POST[$key]) ? $_POST[$key] : '';
     }
+
+    public function isAjaxFetch(){
+        return $this->server('HTTP_X_REQUESTED_WITH') === 'XMLHttpRequest';
+    }
 }

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-05-22 18:32:11
+/* Smarty version 3.1.39, created on 2021-05-28 20:42:12
   from 'C:\My_php\phpLearning2\resources\views\admin\login.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_60a8ddab7be9d7_27459258',
+  'unifunc' => 'content_60b0e524586503_88853304',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'dc21d2c5bf94d5af976f8feae2adfdc1718b5427' => 
     array (
       0 => 'C:\\My_php\\phpLearning2\\resources\\views\\admin\\login.html',
-      1 => 1621679530,
+      1 => 1622205730,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_60a8ddab7be9d7_27459258 (Smarty_Internal_Template $_smarty_tpl) {
+function content_60b0e524586503_88853304 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -61,10 +61,10 @@ function content_60a8ddab7be9d7_27459258 (Smarty_Internal_Template $_smarty_tpl)
     </style>
     <title>登录</title>
 </head>
-<body>
+<body class="bg-dark bg-gradient">
 <div class="container">
     <form action="/admin/login/login" method="post" id="loginForm">
-        <div class="card mb-2" style="padding: 100px">
+        <div class="card mb-2 bg-light" style="padding: 100px">
             <div class="row g-0">
                 <div class="col-md-4">
                     <img src="/static/images/demo1.jpg" alt="Demo image" style="width: 90%;height: 90%">

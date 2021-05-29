@@ -28,5 +28,11 @@ class CommonController extends Controller
         if (empty($_SESSION['cms']['admin']))
             $this->redirect('/admin/login/index');
 
+        if (!$this->request->isAjaxFetch()){
+            $this->assign('user', $_SESSION['cms']['admin']);
+            $this->display('admin/layout');
+        }
+
     }
+
 }
