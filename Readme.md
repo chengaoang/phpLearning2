@@ -1,2 +1,18 @@
-this is perfectVersion
+``` TODO
+TODO 2021/6/1 9:43 周二
+
+6.1.2
+    显示文章列表
+6.1.3
+    分页查询
+6.1.4
+    添加和修改文章
+6.1.5
+    文件上传
+6.1.6
+    删除文章
+```
+-------------------------
+
+[看板](https://gitee.com/ChenGaoAng/phpLearning2/board)
 

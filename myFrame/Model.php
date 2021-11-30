@@ -18,7 +18,7 @@ class Model
     protected function initTable()
     {
         if ($this->table === "") {
-            $this->table = strtolower(basename(get_class($this)));
+            $this->table = $this->db->getConfig('prefix').strtolower(basename(get_class($this)));
         }
     }
 
@@ -50,7 +50,7 @@ class Model
         return $data;
     }
     // 查询单条记录，参数为字段数组，省略参数则表示所有字段
-    public function first(array $field = []): array
+    public function first(array $field = []): array|bool
     {
         if (!$this->options['limit']) $this->limit(1);
         $sql = $this->buildSelect($field);

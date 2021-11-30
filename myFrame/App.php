@@ -24,16 +24,18 @@ class App extends Container
     protected $pathInfo;
     protected $debug = true;
     protected $rootPath; // 保存项目的跟路径
+    protected $request;
     public function __construct()
     {
         // echo "<pre>";
-
+        $this->request = $this->make(Request::class);
+        $this->pathInfo = $this->request->pathInfo();
         // 获取配置文件路径，调用DB的init初始化DB
         $this->rootPath = dirname(__DIR__).'/';
         DB::init(require $this->rootPath.'config/database.php');
         // $this->pathInfo = (new Request())->pathInfo();
         // $this->pathInfo = Container::getInstance()->make(Request::class)->pathInfo();
-        $this->pathInfo = $this->make(Request::class)->pathInfo();
+        // $this->pathInfo = $this->make(Request::class)->pathInfo();
     }
     /**
      * 调用dispatch，其返回一个Response对象
@@ -43,6 +45,8 @@ class App extends Container
         try {
             $classAndMethod = $this->routerCheck($this->pathInfo);
             return $this->dispatch($classAndMethod);
+        } catch (HttpException $e) {
+            return $e->getResponse();
         } catch (Exception $e) {
             $msg = $this->debug ? $e->getMessage() : '';
             return Response::create('系统发生错误 <br> '.$msg, [], 403);
@@ -79,6 +83,8 @@ class App extends Container
      */
     public function dispatch(array $pathInfo): Response
     {
+        $this->request->setAction($pathInfo['action']); // rnm setAction 要在实例化控制器前调用，不然在控制器里得不到action属性导致未定义先使用。找了三个小时的错误，我想哭。。。。。
+
         // 调用controller方法实例化控制器对象
         $instance = $this->controller($pathInfo['controller']);
         if (is_callable([$instance, $pathInfo['action']])) {

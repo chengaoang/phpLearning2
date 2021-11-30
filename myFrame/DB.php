@@ -16,7 +16,8 @@ class DB
         'dbname' => '',
         'charset' => 'utf8',
         'user' => 'root',
-        'pwd' => ''
+        'pwd' => '',
+        'prefix' => ''
     ]; // 缺省配置文件
     private $pdoLink; // PDO 连接
 
@@ -36,7 +37,9 @@ class DB
      */
     public static function getInstance(): DB
     {
-        // self引用的是当前类(current class)而static允许函数调用在运行时绑定调用类(calling class)（继承时用）
+        // self引用的是当前类(current class)
+        // 而static允许函数调用在运行时绑定调用类(calling class)（继承时用）
+        // 谁要拓展DB类时，先继承DB，然后拓展？？？？？大概吧
         if (!self::$instance) {
             self::$instance = new static(static::$initConfig); // 后期静态绑定
         }
@@ -58,13 +61,13 @@ class DB
      */
     public function initDB()
     {
-        $type = $this->config['type'];
-        $host = $this->config['host'];
-        $port = $this->config['port'];
-        $dbname = $this->config['dbname'];
-        $charset = $this->config['charset'];
-        $user = $this->config['user'];
-        $pwd = $this->config['pwd'];
+        $type = $this->getConfig('type');
+        $host = $this->getConfig('host');
+        $port = $this->getConfig('port');
+        $dbname = $this->getConfig('dbname');
+        $charset = $this->getConfig('charset');
+        $user = $this->getConfig('user');
+        $pwd = $this->getConfig('pwd');
         try {
             $this->pdoLink = new PDO(
                 "$type:host=$host;port=$port;dbname=$dbname;charset=$charset",
@@ -75,17 +78,17 @@ class DB
             throw new Exception("初始化PDO异常:".$ex->getMessage());
         }
 
-        // $this->pdoLink->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->pdoLink->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
     /**
      * @description 获取单条数据
      * @param $sql
      * @param array $args
-     * @return array
+     * @return array|bool
      * @throws Exception
      */
-    public function fetch($sql, array $args = []): array
+    public function fetch($sql, array $args = []): array|bool
     {
         try {
             $stmt = $this->pdoLink->prepare($sql);
@@ -130,5 +133,10 @@ class DB
         }catch (PDOException $ex){
             throw new Exception(__CLASS__." 的 ".__FUNCTION__." 方法执行异常 : ".$ex->getMessage());
         }
+    }
+
+    public function getConfig($key = null)
+    {
+        return $key ? $this->config[$key] : $this->config;
     }
 }

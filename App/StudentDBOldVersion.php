@@ -3,7 +3,7 @@ namespace App;
 
 use myFrame\DB;
 
-class Student
+class _Student
 {
     private $pdo;
     public function __construct()

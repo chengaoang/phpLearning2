@@ -3,7 +3,7 @@ namespace App;
 
 use MySQLi;
 
-class StudentModel
+class _StudentModel
 {
     private $link;
     public function __construct()

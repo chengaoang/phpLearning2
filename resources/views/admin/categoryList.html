@@ -1,0 +1,54 @@
+<div class="bg-dark" style="margin-top: 30px">
+    <!-- table 参考于：https://getbootstrap.com/docs/5.0/content/tables/#accented-tables -->
+    <table class="table table-striped table-dark table-hover">
+        <thead>
+        <tr>
+            <th scope="col">栏目名称</th>
+            <th scope="col">排序值</th>
+            <th scope="col">操作</th>
+            <th scope="col">拖动以排序</th>
+        </tr>
+        </thead>
+        <tbody>
+        {foreach $category as $item}
+            <tr id="ROW">
+                <td hidden id="ID">{$item.id}</td>
+                <td>
+                    <textarea id="name" class="input-group text-white" style="background:rgba(0, 0, 0, 0);" rows="1" type="text">{$item.name}</textarea>
+                </td>
+                <td id="sort">{$item.sort}</td>
+                <td>
+<!--                    <a href="#">编辑</a>-->
+                    <div href="/admin/Category/delete?id={$item.id}" draggable="true" class="text-danger" id="del">删除</div>
+                </td>
+                <td draggable="true">
+                    <img class="" src="/static/images/drag.svg" alt="托我">
+                </td>
+            </tr>
+        {/foreach}
+
+        <tr id="hiddenRow" hidden>
+            <td>
+                <textarea id="name" class="input-group text-white" style="background:rgba(0, 0, 0, 0);" rows="1" type="text"></textarea>
+            </td>
+            <td id="sort">{$item.sort+1}</td>
+            <td>
+                <!--                    <a href="#">编辑</a>-->
+<!--                <a href="#" class="text-danger">删除</a>-->
+            </td>
+            <td draggable="true">
+                <img class="" src="/static/images/drag.svg" alt="托我">
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="4">
+                <a id="addBtn" class="btn text-danger">添加栏目</a> <!-- 用js新增一行 -->
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+    <button id="saveBtn" class="btn btn-dark bg-primary">保存修改</button>
+</div>
+

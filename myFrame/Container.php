@@ -6,18 +6,19 @@ class Container
     /**
      * 采用单例模式返回对象实例
      */
-    protected $instances = [];
+    protected array $instances = [];
     public function make($className)
     {
         // if ($instance[$className] == null) {
-        if (!isset($instance[$className])) {
+        if (!isset($this->instances[$className])) {
+            // echo "make something!".$className."<br>";
             // 反射实现构造方法的依赖注入
             $reflectObject = new \ReflectionClass($className); // 创建反射对象
             $constructor = $reflectObject->getConstructor(); // 获取反射对象的构造方法
             $args = $constructor ? $this->bindParamter($constructor) : []; // 获取构造方法依赖的对象
-            $instance[$className] = $reflectObject->newInstanceArgs($args);
+            $this->instances[$className] = $reflectObject->newInstanceArgs($args);
         }
-        return $instance[$className];
+        return $this->instances[$className];
     }
     public function bindParamter(\ReflectionMethod $reflectionMethod)
     {

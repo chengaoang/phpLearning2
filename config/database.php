@@ -6,5 +6,6 @@ return [
     'dbname' => 'myframe',
     'charset' => 'utf8',
     'user' => 'root',
-    'pwd' => 'password'
+    'pwd' => 'password',
+    'prefix' => 'cms_' // 保存表前缀
 ];
