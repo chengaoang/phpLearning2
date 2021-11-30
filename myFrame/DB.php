@@ -37,7 +37,9 @@ class DB
      */
     public static function getInstance(): DB
     {
-        // self引用的是当前类(current class)而static允许函数调用在运行时绑定调用类(calling class)（继承时用）
+        // self引用的是当前类(current class)
+        // 而static允许函数调用在运行时绑定调用类(calling class)（继承时用）
+        // 谁要拓展DB类时，先继承DB，然后拓展？？？？？大概吧
         if (!self::$instance) {
             self::$instance = new static(static::$initConfig); // 后期静态绑定
         }
